@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const itemInput = document.getElementById('itemInput');
-    const addButton = document.getElementById('addButton');
-    const clearButton = document.getElementById('clearButton');
-    const shoppingList = document.getElementById('shoppingList');
+    let itemInput = document.getElementById('itemInput');
+    let addButton = document.getElementById('addButton');
+
+    let clearButton = document.getElementById('clearButton');
+    let shoppingList = document.getElementById('shoppingList');
+
     let items = JSON.parse(localStorage.getItem('shoppingList')) || [];
 
     // Load items from local storage
@@ -10,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add item
     addButton.addEventListener('click', () => {
-        const itemName = itemInput.value.trim();
+        let itemName = itemInput.value.trim();
         if (itemName !== '') {
-            const newItem = { name: itemName, purchased: false };
+            let newItem = { name: itemName, purchased: false };
             items.push(newItem);
             addItemToDOM(newItem.name, newItem.purchased);
             localStorage.setItem('shoppingList', JSON.stringify(items));
@@ -29,12 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add item to DOM
     function addItemToDOM(itemName, purchased) {
-        const li = document.createElement('li');
+        let li = document.createElement('li');
         li.style.display = 'flex';
         li.style.alignItems = 'center';
         li.style.marginBottom = '10px';
 
-        const itemText = document.createElement('span');
+        let itemText = document.createElement('span');
         itemText.textContent = itemName;
         itemText.classList.add('item-text');
         itemText.contentEditable = true;
@@ -45,20 +47,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         itemText.addEventListener('blur', () => {
             // Update the item in the array when editing is finished
-            const index = items.findIndex(item => item.name === itemName);
+            let index = items.findIndex(item => item.name === itemName);
             if (index !== -1) {
                 items[index].name = itemText.textContent;
                 localStorage.setItem('shoppingList', JSON.stringify(items));
             }
         });
 
-        const purchaseButton = document.createElement('button');
+        let purchaseButton = document.createElement('button');
         purchaseButton.textContent = 'Mark Purchased';
         purchaseButton.classList.add('mark-button');
 
         purchaseButton.addEventListener('click', () => {
             itemText.classList.toggle('purchased');
-            const index = items.findIndex(item => item.name === itemName);
+            let index = items.findIndex(item => item.name === itemName);
             if (index !== -1) {
                 items[index].purchased = !items[index].purchased;
                 localStorage.setItem('shoppingList', JSON.stringify(items));
