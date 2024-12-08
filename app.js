@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let addButton = document.getElementById('addButton');
 
     let clearButton = document.getElementById('clearButton');
+
     let shoppingList = document.getElementById('shoppingList');
 
     let items = JSON.parse(localStorage.getItem('shoppingList')) || [];
@@ -16,16 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (itemName !== '') {
             let newItem = { name: itemName, purchased: false };
             items.push(newItem);
+
             addItemToDOM(newItem.name, newItem.purchased);
             localStorage.setItem('shoppingList', JSON.stringify(items));
             itemInput.value = '';
         }
     });
-
     // Clear list
     clearButton.addEventListener('click', () => {
         items = [];
         shoppingList.innerHTML = '';
+
+        //for local storage, the data is made persisted even after browser is closed and opened, or is reloaded
         localStorage.setItem('shoppingList', JSON.stringify([]));
     });
 
@@ -38,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let itemText = document.createElement('span');
         itemText.textContent = itemName;
+
         itemText.classList.add('item-text');
         itemText.contentEditable = true;
         itemText.style.flexGrow = '1';
@@ -61,6 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
         purchaseButton.addEventListener('click', () => {
             itemText.classList.toggle('purchased');
             let index = items.findIndex(item => item.name === itemName);
+
+            
             if (index !== -1) {
                 items[index].purchased = !items[index].purchased;
                 localStorage.setItem('shoppingList', JSON.stringify(items));
