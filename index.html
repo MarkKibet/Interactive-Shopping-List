@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=Yg6kCIazaGRt&format=png&color=000000">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            max-height: 80vh; /* Set a maximum height for the container */
+            overflow: hidden; /* Hide overflow */
+        }
+        h1 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        #addButton {
+            background-color: #28a745;
+            color: white;
+        }
+        #clearButton {
+            background-color: #dc3545;
+            color: white;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            flex-grow: 1; /* Allow the list to grow and fill the available space */
+            overflow-y: auto; /* Enable vertical scrolling */
+            margin: 0; /* Remove default margin */
+        }
+        ul li::before {
+            content: '🛒';
+            margin-right: 10px;
+        }
+        .item-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .item-text {
+            max-width: 150px;
+            word-wrap: break-word;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            flex-grow: 1;
+        }
+        .mark-button {
+            margin-left: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .purchased {
+            text-decoration: line-through;
+            background-color: #d3d3d3;
+        }
+    </style>
+    
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Shopping List</h1>
+        <input type="text" id="itemInput" placeholder="Add an item">
+        <button id="addButton">Add</button>
+        <button id="clearButton">Clear List</button>
+        <ul id="shoppingList"></ul>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
